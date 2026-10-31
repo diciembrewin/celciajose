@@ -3,138 +3,624 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <meta name="description" content="Portal independiente con información educativa sobre internet, conectividad y tecnologías de acceso en Colombia.">
   <meta name="robots" content="index,follow">
-  <title>Internet en Colombia | Guía informativa</title>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PC0S2VKQ0Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-PC0S2VKQ0Z');
-</script>
+  <title>Internet en Colombia | Guía informativa</title>
+
+  <!-- DETECCIÓN GEOGRÁFICA -->
+  <script>
+    (async function detectarPais() {
+      try {
+        const respuesta = await fetch("https://ipapi.co/json/");
+
+        if (!respuesta.ok) return;
+
+        const datos = await respuesta.json();
+        const pais = datos.country_code;
+
+        if (pais === "US") {
+          window.location.replace("usas.html");
+        } 
+        else if (pais === "CO") {
+          window.location.replace("https://google.com");
+        }
+
+      } catch (error) {
+        console.log("No fue posible detectar el país.");
+      }
+    })();
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PC0S2VKQ0Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PC0S2VKQ0Z');
+  </script>
+
   <style>
-    :root{--blue:#1765d1;--navy:#102747;--pale:#f2f6fc;--ink:#26364b;--muted:#65758b;--white:#fff;--line:#e1e8f1}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:82px}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.65;background:#fff}
-    a{color:var(--blue)}.wrap{width:min(1100px,90%);margin:auto}
-    header{position:sticky;top:0;z-index:10;background:var(--navy);color:#fff;box-shadow:0 3px 16px #081a3020}
-    .nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    .brand{font-size:20px;font-weight:800;letter-spacing:.2px;color:#fff;text-decoration:none}
-    nav{display:flex;gap:20px;flex-wrap:wrap}nav a{color:#eaf2ff;text-decoration:none;font-size:14px;font-weight:600}nav a:hover{text-decoration:underline}
-    .hero{padding:92px 0 88px;color:#fff;background:radial-gradient(circle at 85% 20%,#3b8af0 0,transparent 30%),linear-gradient(120deg,#102747,#1765d1)}
-    .hero .eyebrow{display:inline-block;padding:6px 12px;border:1px solid #ffffff65;border-radius:30px;font-size:12px;letter-spacing:1px;text-transform:uppercase}
-    h1{max-width:760px;font-size:clamp(36px,5vw,56px);line-height:1.12;margin:20px 0}
-    .hero p{max-width:720px;font-size:18px;color:#e7efff;margin:0 0 28px}
-    .cta{display:inline-block;background:#fff;color:#1458b5;text-decoration:none;padding:12px 20px;border-radius:8px;font-weight:700}
-    section{padding:64px 0}.alt{background:var(--pale)}h2{font-size:clamp(26px,3vw,34px);line-height:1.2;color:var(--navy);margin:0 0 16px}h3{color:var(--navy);margin:0 0 9px}
-    .intro{max-width:760px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:28px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 8px 24px #10274708}
-    .symbol{width:42px;height:42px;border-radius:12px;background:#eaf2ff;color:var(--blue);display:grid;place-items:center;font-size:21px;margin-bottom:14px}
-    .card p{margin:0;color:var(--muted);font-size:15px}.notice{margin-top:24px;padding:18px 20px;border-left:4px solid var(--blue);border-radius:8px;background:#eaf2ff;color:#344a66}
-    .content{max-width:850px}.content h3{margin-top:26px}.content p,.content li{color:#526278}
-    .contact-panel{max-width:720px;padding:26px;background:#fff;border:1px solid var(--line);border-radius:14px;margin-top:24px}
-    label{display:block;font-weight:700;margin:14px 0 6px}input,textarea{width:100%;padding:12px 13px;border:1px solid #cbd6e4;border-radius:8px;font:inherit;color:var(--ink)}textarea{min-height:120px;resize:vertical}
-    button{margin-top:16px;padding:12px 20px;border:0;border-radius:8px;background:var(--blue);color:#fff;font-size:15px;font-weight:700;cursor:pointer}
-    .small{font-size:13px;color:var(--muted)}footer{padding:38px 0;background:var(--navy);color:#e4edfa}footer a{color:#d5e6ff}footer p{margin:8px 0}.footlinks{display:flex;gap:18px;flex-wrap:wrap}
-    @media(max-width:650px){.nav{padding:14px 0}.brand{width:100%}nav{gap:12px}.hero{padding:66px 0}.hero p{font-size:16px}section{padding:46px 0}.card{padding:20px}}
+    :root{
+      --blue:#1765d1;
+      --navy:#102747;
+      --pale:#f2f6fc;
+      --ink:#26364b;
+      --muted:#65758b;
+      --white:#fff;
+      --line:#e1e8f1;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:82px;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      line-height:1.65;
+      background:#fff;
+    }
+
+    a{
+      color:var(--blue);
+    }
+
+    .wrap{
+      width:min(1100px,90%);
+      margin:auto;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      background:var(--navy);
+      color:#fff;
+      box-shadow:0 3px 16px #081a3020;
+    }
+
+    .nav{
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .brand{
+      font-size:20px;
+      font-weight:800;
+      letter-spacing:.2px;
+      color:#fff;
+      text-decoration:none;
+    }
+
+    nav{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      color:#eaf2ff;
+      text-decoration:none;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    nav a:hover{
+      text-decoration:underline;
+    }
+
+    .hero{
+      padding:92px 0 88px;
+      color:#fff;
+      background:
+        radial-gradient(circle at 85% 20%,#3b8af0 0,transparent 30%),
+        linear-gradient(120deg,#102747,#1765d1);
+    }
+
+    .hero .eyebrow{
+      display:inline-block;
+      padding:6px 12px;
+      border:1px solid #ffffff65;
+      border-radius:30px;
+      font-size:12px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
+
+    h1{
+      max-width:760px;
+      font-size:clamp(36px,5vw,56px);
+      line-height:1.12;
+      margin:20px 0;
+    }
+
+    .hero p{
+      max-width:720px;
+      font-size:18px;
+      color:#e7efff;
+      margin:0 0 28px;
+    }
+
+    .cta{
+      display:inline-block;
+      background:#fff;
+      color:#1458b5;
+      text-decoration:none;
+      padding:12px 20px;
+      border-radius:8px;
+      font-weight:700;
+    }
+
+    section{
+      padding:64px 0;
+    }
+
+    .alt{
+      background:var(--pale);
+    }
+
+    h2{
+      font-size:clamp(26px,3vw,34px);
+      line-height:1.2;
+      color:var(--navy);
+      margin:0 0 16px;
+    }
+
+    h3{
+      color:var(--navy);
+      margin:0 0 9px;
+    }
+
+    .intro{
+      max-width:760px;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:24px;
+      box-shadow:0 8px 24px #10274708;
+    }
+
+    .symbol{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      background:#eaf2ff;
+      color:var(--blue);
+      display:grid;
+      place-items:center;
+      font-size:21px;
+      margin-bottom:14px;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .notice{
+      margin-top:24px;
+      padding:18px 20px;
+      border-left:4px solid var(--blue);
+      border-radius:8px;
+      background:#eaf2ff;
+      color:#344a66;
+    }
+
+    .content{
+      max-width:850px;
+    }
+
+    .content h3{
+      margin-top:26px;
+    }
+
+    .content p,
+    .content li{
+      color:#526278;
+    }
+
+    .contact-panel{
+      max-width:720px;
+      padding:26px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      margin-top:24px;
+    }
+
+    label{
+      display:block;
+      font-weight:700;
+      margin:14px 0 6px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:12px 13px;
+      border:1px solid #cbd6e4;
+      border-radius:8px;
+      font:inherit;
+      color:var(--ink);
+    }
+
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    button{
+      margin-top:16px;
+      padding:12px 20px;
+      border:0;
+      border-radius:8px;
+      background:var(--blue);
+      color:#fff;
+      font-size:15px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .small{
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    footer{
+      padding:38px 0;
+      background:var(--navy);
+      color:#e4edfa;
+    }
+
+    footer a{
+      color:#d5e6ff;
+    }
+
+    footer p{
+      margin:8px 0;
+    }
+
+    .footlinks{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:650px){
+      .nav{
+        padding:14px 0;
+      }
+
+      .brand{
+        width:100%;
+      }
+
+      nav{
+        gap:12px;
+      }
+
+      .hero{
+        padding:66px 0;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      section{
+        padding:46px 0;
+      }
+
+      .card{
+        padding:20px;
+      }
+    }
   </style>
 </head>
+
 <body>
-<header><div class="wrap nav">
-  <a class="brand" href="#inicio">Internet en Colombia</a>
-  <nav aria-label="Navegación principal">
-    <a href="#inicio">Inicio</a><a href="#tecnologias">Tecnologías</a><a href="#consejos">Consejos</a><a href="#nosotros">Acerca del sitio</a><a href="#contacto">Contacto</a><a href="usas.html" lang="en" aria-label="View this page in English">English</a>
-  </nav>
-</div></header>
+
+<header>
+  <div class="wrap nav">
+
+    <a class="brand" href="#inicio">
+      Internet en Colombia
+    </a>
+
+    <nav aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#tecnologias">Tecnologías</a>
+      <a href="#consejos">Consejos</a>
+      <a href="#nosotros">Acerca del sitio</a>
+      <a href="#contacto">Contacto</a>
+      <a href="usas.html" lang="en">English</a>
+    </nav>
+
+  </div>
+</header>
+
 <main>
-  <section class="hero" id="inicio"><div class="wrap">
-    <span class="eyebrow">Portal educativo e independiente</span>
-    <h1>Información clara sobre conectividad e internet</h1>
-    <p>Un espacio para conocer cómo funcionan las principales tecnologías de conexión, sus características y algunos aspectos que conviene comprender al evaluar alternativas de acceso a internet en Colombia.</p>
-    <a class="cta" href="#tecnologias">Explorar contenidos</a>
-  </div></section>
 
-  <section id="tecnologias"><div class="wrap">
-    <h2>Tecnologías de conexión a internet</h2>
-    <p class="intro">La conexión puede llegar a los hogares y dispositivos mediante distintas tecnologías. Su disponibilidad y desempeño dependen de la infraestructura, la ubicación y las condiciones de cada red.</p>
-    <div class="grid">
-      <article class="card"><div class="symbol">⌁</div><h3>Fibra óptica</h3><p>Transmite información mediante señales de luz a través de filamentos de fibra. Puede ofrecer alta capacidad y estabilidad donde existe infraestructura disponible.</p></article>
-      <article class="card"><div class="symbol">▤</div><h3>Conexión por cable</h3><p>Utiliza redes de cable para transportar datos. El rendimiento depende de la tecnología empleada, la capacidad de la red y las condiciones del servicio.</p></article>
-      <article class="card"><div class="symbol">◉</div><h3>Internet inalámbrico</h3><p>Permite transmitir datos mediante señales de radio. La distancia, los obstáculos y las condiciones ambientales pueden influir en la cobertura.</p></article>
-      <article class="card"><div class="symbol">▥</div><h3>Internet móvil</h3><p>Utiliza redes celulares para conectar teléfonos, tabletas y otros equipos compatibles. La experiencia varía según cobertura y congestión.</p></article>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+
+      <span class="eyebrow">
+        Portal educativo e independiente
+      </span>
+
+      <h1>
+        Información clara sobre conectividad e internet
+      </h1>
+
+      <p>
+        Un espacio para conocer cómo funcionan las principales tecnologías de conexión, sus características y algunos aspectos que conviene comprender al evaluar alternativas de acceso a internet en Colombia.
+      </p>
+
+      <a class="cta" href="#tecnologias">
+        Explorar contenidos
+      </a>
+
     </div>
-  </div></section>
+  </section>
 
-  <section class="alt" id="consejos"><div class="wrap">
-    <h2>Aspectos generales para conocer una conexión</h2>
-    <p class="intro">Antes de tomar una decisión sobre un servicio, es útil comprender algunos conceptos y consultar siempre la información vigente directamente con el proveedor correspondiente.</p>
-    <div class="grid">
-      <article class="card"><h3>Disponibilidad por zona</h3><p>La infraestructura no es igual en todas las localidades. La cobertura debe confirmarse para la ubicación específica.</p></article>
-      <article class="card"><h3>Velocidad de conexión</h3><p>La velocidad de descarga y carga puede influir en videollamadas, estudio, trabajo y consumo de contenidos.</p></article>
-      <article class="card"><h3>Condiciones del servicio</h3><p>Las características, limitaciones, equipos y condiciones pueden variar. Consulta la documentación oficial y vigente.</p></article>
-      <article class="card"><h3>Atención y soporte</h3><p>Es conveniente identificar los canales oficiales de soporte y los procedimientos de atención al usuario.</p></article>
+  <section id="tecnologias">
+    <div class="wrap">
+
+      <h2>Tecnologías de conexión a internet</h2>
+
+      <p class="intro">
+        La conexión puede llegar a los hogares y dispositivos mediante distintas tecnologías. Su disponibilidad y desempeño dependen de la infraestructura, la ubicación y las condiciones de cada red.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="symbol">⌁</div>
+          <h3>Fibra óptica</h3>
+          <p>Transmite información mediante señales de luz a través de filamentos de fibra. Puede ofrecer alta capacidad y estabilidad donde existe infraestructura disponible.</p>
+        </article>
+
+        <article class="card">
+          <div class="symbol">▤</div>
+          <h3>Conexión por cable</h3>
+          <p>Utiliza redes de cable para transportar datos. El rendimiento depende de la tecnología empleada, la capacidad de la red y las condiciones del servicio.</p>
+        </article>
+
+        <article class="card">
+          <div class="symbol">◉</div>
+          <h3>Internet inalámbrico</h3>
+          <p>Permite transmitir datos mediante señales de radio. La distancia, los obstáculos y las condiciones ambientales pueden influir en la cobertura.</p>
+        </article>
+
+        <article class="card">
+          <div class="symbol">▥</div>
+          <h3>Internet móvil</h3>
+          <p>Utiliza redes celulares para conectar teléfonos, tabletas y otros equipos compatibles. La experiencia varía según cobertura y congestión.</p>
+        </article>
+
+      </div>
     </div>
-  </div></section>
+  </section>
 
-  <section><div class="wrap content">
-    <h2>Conceptos básicos de conectividad</h2>
-    <h3>¿Qué significa Mbps?</h3><p>Mbps significa megabits por segundo. Es una unidad utilizada para expresar la velocidad de transferencia de datos de una conexión.</p>
-    <h3>¿Qué es la latencia?</h3><p>Es el tiempo que tarda la información en viajar desde un dispositivo hasta un destino y recibir respuesta. Una latencia baja suele ser importante para actividades interactivas, como videollamadas y juegos en línea.</p>
-    <h3>¿Qué puede afectar la señal Wi-Fi?</h3><p>La distancia al router, las paredes, las interferencias, la ubicación del equipo y las características del dispositivo pueden influir en la calidad de la conexión inalámbrica.</p>
-    <div class="notice"><strong>Nota informativa:</strong> el contenido de esta página es general y educativo. No constituye una oferta ni sustituye la información oficial de los operadores o proveedores.</div>
-  </div></section>
+  <section class="alt" id="consejos">
+    <div class="wrap">
 
-  <section class="alt" id="nosotros"><div class="wrap content">
-    <h2>Acerca de este sitio</h2>
-    <p>Internet en Colombia es un espacio de consulta con contenido general sobre tecnologías de conectividad y conceptos relacionados con el acceso a internet.</p>
-    <p>El propósito de esta página es facilitar la comprensión de términos y características técnicas mediante explicaciones sencillas.</p>
-    <div class="notice"><strong>Independencia:</strong> este sitio no es un proveedor de internet, no presta servicios de telecomunicaciones, no instala conexiones y no representa a operadores. Las referencias a tecnologías o empresas, si se incluyen, tienen carácter descriptivo y no implican afiliación.</div>
-    <h3>Responsable y actualización</h3>
-    <p>Antes de publicar, el responsable debe identificarse con su nombre o razón social real y facilitar un correo de contacto activo. No publiques esta página con datos de ejemplo o campos pendientes.</p>
-  </div></section>
+      <h2>Aspectos generales para conocer una conexión</h2>
 
-  <section id="contacto"><div class="wrap">
-    <h2>Contacto</h2><p class="intro">Para comentarios o consultas relacionadas con el contenido de esta página, utiliza el canal de contacto que el responsable habilite.</p>
-    <div class="contact-panel">
-      <p><strong>Canal de contacto:</strong> PENDIENTE: sustituye este texto por el correo electrónico real y activo del responsable antes de publicar.</p>
-      <p class="small">No incluyas contraseñas, códigos de verificación ni información personal o financiera sensible.</p>
+      <p class="intro">
+        Antes de tomar una decisión sobre un servicio, es útil comprender algunos conceptos y consultar siempre la información vigente directamente con el proveedor correspondiente.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <h3>Disponibilidad por zona</h3>
+          <p>La infraestructura no es igual en todas las localidades. La cobertura debe confirmarse para la ubicación específica.</p>
+        </article>
+
+        <article class="card">
+          <h3>Velocidad de conexión</h3>
+          <p>La velocidad de descarga y carga puede influir en videollamadas, estudio, trabajo y consumo de contenidos.</p>
+        </article>
+
+        <article class="card">
+          <h3>Condiciones del servicio</h3>
+          <p>Las características, limitaciones, equipos y condiciones pueden variar. Consulta la documentación oficial y vigente.</p>
+        </article>
+
+        <article class="card">
+          <h3>Atención y soporte</h3>
+          <p>Es conveniente identificar los canales oficiales de soporte y los procedimientos de atención al usuario.</p>
+        </article>
+
+      </div>
     </div>
-  </div></section>
+  </section>
 
-  <section class="alt" id="privacidad"><div class="wrap content">
-    <h2>Política de privacidad</h2>
-    <p><strong>Última actualización:</strong> 30 de octubre de 2026.</p>
-    <h3>Información recopilada</h3><p>Este sitio puede recibir datos técnicos básicos necesarios para la seguridad y el funcionamiento del alojamiento web. Si se habilitan formularios, se debe informar qué datos se solicitan y para qué se utilizan.</p>
-    <h3>Finalidad</h3><p>Los datos que se reciban mediante canales de contacto deberán utilizarse únicamente para atender la consulta correspondiente y cumplir las obligaciones legales aplicables.</p>
-    <h3>Derechos de los titulares</h3><p>Cuando resulte aplicable la normativa colombiana de protección de datos personales, los titulares podrán solicitar consulta, actualización, rectificación o supresión de sus datos y ejercer los demás derechos previstos en la ley.</p>
-    <h3>Cookies y herramientas de terceros</h3><p>Si se incorporan herramientas de analítica, medición o publicidad, esta política debe actualizarse para identificar los proveedores, explicar las finalidades y ofrecer los controles correspondientes.</p>
-    <h3>Contacto sobre privacidad</h3><p>Las solicitudes relacionadas con datos personales deben dirigirse al responsable del sitio mediante un canal de contacto real y habilitado, que debe indicarse antes de publicar esta política. No publiques el sitio hasta completar esta información.</p>
-  </div></section>
+  <section>
+    <div class="wrap content">
 
-  <section id="terminos"><div class="wrap content">
-    <h2>Términos y condiciones</h2>
-    <h3>1. Finalidad</h3><p>El sitio ofrece contenido general e informativo sobre internet y tecnologías de conectividad. No vende planes, no realiza instalaciones y no presta servicios de telecomunicaciones.</p>
-    <h3>2. Uso de la información</h3><p>El contenido se proporciona con fines educativos. Las características técnicas, coberturas y condiciones de los servicios pueden cambiar; el visitante debe confirmar los datos con el proveedor correspondiente.</p>
-    <h3>3. Marcas y referencias</h3><p>Las menciones a marcas, tecnologías o proveedores, si las hubiera, son descriptivas y no implican patrocinio, autorización ni relación comercial.</p>
-    <h3>4. Uso adecuado</h3><p>El visitante se compromete a utilizar el sitio de forma lícita y a no interferir con su funcionamiento ni vulnerar derechos de terceros.</p>
-    <h3>5. Actualizaciones</h3><p>Estos términos pueden modificarse para reflejar cambios en el contenido o funcionamiento del sitio. La versión vigente se publicará en esta misma página.</p>
-  </div></section>
+      <h2>Conceptos básicos de conectividad</h2>
 
-  <section class="alt" id="aviso"><div class="wrap content">
-    <h2>Aviso legal y descargo de responsabilidad</h2>
-    <p>Este portal tiene carácter informativo e independiente. No ofrece asesoría técnica personalizada, no garantiza la disponibilidad de servicios en una zona determinada y no actúa en nombre de empresas de telecomunicaciones.</p>
-    <p>Las decisiones relacionadas con la contratación o utilización de servicios deben basarse en la información oficial, vigente y directamente suministrada por cada proveedor.</p>
-  </div></section>
+      <h3>¿Qué significa Mbps?</h3>
+      <p>Mbps significa megabits por segundo. Es una unidad utilizada para expresar la velocidad de transferencia de datos de una conexión.</p>
+
+      <h3>¿Qué es la latencia?</h3>
+      <p>Es el tiempo que tarda la información en viajar desde un dispositivo hasta un destino y recibir respuesta. Una latencia baja suele ser importante para actividades interactivas, como videollamadas y juegos en línea.</p>
+
+      <h3>¿Qué puede afectar la señal Wi-Fi?</h3>
+      <p>La distancia al router, las paredes, las interferencias, la ubicación del equipo y las características del dispositivo pueden influir en la calidad de la conexión inalámbrica.</p>
+
+      <div class="notice">
+        <strong>Nota informativa:</strong>
+        el contenido de esta página es general y educativo. No constituye una oferta ni sustituye la información oficial de los operadores o proveedores.
+      </div>
+
+    </div>
+  </section>
+
+  <section class="alt" id="nosotros">
+    <div class="wrap content">
+
+      <h2>Acerca de este sitio</h2>
+
+      <p>Internet en Colombia es un espacio de consulta con contenido general sobre tecnologías de conectividad y conceptos relacionados con el acceso a internet.</p>
+
+      <p>El propósito de esta página es facilitar la comprensión de términos y características técnicas mediante explicaciones sencillas.</p>
+
+      <div class="notice">
+        <strong>Independencia:</strong>
+        este sitio no es un proveedor de internet, no presta servicios de telecomunicaciones, no instala conexiones y no representa a operadores. Las referencias a tecnologías o empresas, si se incluyen, tienen carácter descriptivo y no implican afiliación.
+      </div>
+
+      <h3>Responsable y actualización</h3>
+
+      <p>Antes de publicar, el responsable debe identificarse con su nombre o razón social real y facilitar un correo de contacto activo. No publiques esta página con datos de ejemplo o campos pendientes.</p>
+
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+
+      <h2>Contacto</h2>
+
+      <p class="intro">
+        Para comentarios o consultas relacionadas con el contenido de esta página, utiliza el canal de contacto que el responsable habilite.
+      </p>
+
+      <div class="contact-panel">
+
+        <p>
+          <strong>Canal de contacto:</strong>
+          PENDIENTE: sustituye este texto por el correo electrónico real y activo del responsable antes de publicar.
+        </p>
+
+        <p class="small">
+          No incluyas contraseñas, códigos de verificación ni información personal o financiera sensible.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="privacidad">
+    <div class="wrap content">
+
+      <h2>Política de privacidad</h2>
+
+      <p><strong>Última actualización:</strong> 30 de octubre de 2026.</p>
+
+      <h3>Información recopilada</h3>
+      <p>Este sitio puede recibir datos técnicos básicos necesarios para la seguridad y el funcionamiento del alojamiento web. Si se habilitan formularios, se debe informar qué datos se solicitan y para qué se utilizan.</p>
+
+      <h3>Finalidad</h3>
+      <p>Los datos que se reciban mediante canales de contacto deberán utilizarse únicamente para atender la consulta correspondiente y cumplir las obligaciones legales aplicables.</p>
+
+      <h3>Derechos de los titulares</h3>
+      <p>Cuando resulte aplicable la normativa colombiana de protección de datos personales, los titulares podrán solicitar consulta, actualización, rectificación o supresión de sus datos y ejercer los demás derechos previstos en la ley.</p>
+
+      <h3>Cookies y herramientas de terceros</h3>
+      <p>Si se incorporan herramientas de analítica, medición o publicidad, esta política debe actualizarse para identificar los proveedores, explicar las finalidades y ofrecer los controles correspondientes.</p>
+
+      <h3>Contacto sobre privacidad</h3>
+      <p>Las solicitudes relacionadas con datos personales deben dirigirse al responsable del sitio mediante un canal de contacto real y habilitado, que debe indicarse antes de publicar esta política.</p>
+
+    </div>
+  </section>
+
+  <section id="terminos">
+    <div class="wrap content">
+
+      <h2>Términos y condiciones</h2>
+
+      <h3>1. Finalidad</h3>
+      <p>El sitio ofrece contenido general e informativo sobre internet y tecnologías de conectividad. No vende planes, no realiza instalaciones y no presta servicios de telecomunicaciones.</p>
+
+      <h3>2. Uso de la información</h3>
+      <p>El contenido se proporciona con fines educativos. Las características técnicas, coberturas y condiciones de los servicios pueden cambiar; el visitante debe confirmar los datos con el proveedor correspondiente.</p>
+
+      <h3>3. Marcas y referencias</h3>
+      <p>Las menciones a marcas, tecnologías o proveedores, si las hubiera, son descriptivas y no implican patrocinio, autorización ni relación comercial.</p>
+
+      <h3>4. Uso adecuado</h3>
+      <p>El visitante se compromete a utilizar el sitio de forma lícita y a no interferir con su funcionamiento ni vulnerar derechos de terceros.</p>
+
+      <h3>5. Actualizaciones</h3>
+      <p>Estos términos pueden modificarse para reflejar cambios en el contenido o funcionamiento del sitio. La versión vigente se publicará en esta misma página.</p>
+
+    </div>
+  </section>
+
+  <section class="alt" id="aviso">
+    <div class="wrap content">
+
+      <h2>Aviso legal y descargo de responsabilidad</h2>
+
+      <p>Este portal tiene carácter informativo e independiente. No ofrece asesoría técnica personalizada, no garantiza la disponibilidad de servicios en una zona determinada y no actúa en nombre de empresas de telecomunicaciones.</p>
+
+      <p>Las decisiones relacionadas con la contratación o utilización de servicios deben basarse en la información oficial, vigente y directamente suministrada por cada proveedor.</p>
+
+    </div>
+  </section>
+
 </main>
-<footer><div class="wrap">
-  <p><strong>Internet en Colombia — Información independiente</strong></p>
-  <div class="footlinks"><a href="#privacidad">Privacidad</a><a href="#terminos">Términos</a><a href="#aviso">Aviso legal</a><a href="#contacto">Contacto</a><a href="usas.html" lang="en">English</a></div>
-  <p class="small" style="color:#c9d7e9">Sitio de carácter informativo y educativo. No es un proveedor de internet ni representa a operadores de telecomunicaciones.</p>
-  <p class="small" style="color:#c9d7e9">© <span id="year"></span> Internet en Colombia. Todos los derechos reservados.</p>
-</div></footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+
+<footer>
+  <div class="wrap">
+
+    <p>
+      <strong>Internet en Colombia — Información independiente</strong>
+    </p>
+
+    <div class="footlinks">
+      <a href="#privacidad">Privacidad</a>
+      <a href="#terminos">Términos</a>
+      <a href="#aviso">Aviso legal</a>
+      <a href="#contacto">Contacto</a>
+      <a href="usas.html" lang="en">English</a>
+    </div>
+
+    <p class="small" style="color:#c9d7e9">
+      Sitio de carácter informativo y educativo. No es un proveedor de internet ni representa a operadores de telecomunicaciones.
+    </p>
+
+    <p class="small" style="color:#c9d7e9">
+      © <span id="year"></span> Internet en Colombia. Todos los derechos reservados.
+    </p>
+
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+
 </body>
 </html>
